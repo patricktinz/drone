@@ -3,9 +3,12 @@
 #include <iostream> 
 #include <GL/freeglut.h>   // load all for OpenGL
 #include "Cube.h"
+#include "Pyramid.h"
+#include "Wing.h"
+#include "Drone.h"
 
 float fRotation = 315.0;
-
+float zTranslation = -0.2;
 void Init()
 {
 	// all actions for program start
@@ -17,13 +20,44 @@ void RenderScene()
 {
 	// Here is the code that must be executed in each frame
 	glLoadIdentity();   // Reset current model / view transformation matrix
-	glClearColor(0.8, 0.4, 0.0, 1.0);
+	glClearColor(0.0, 0.5, 1.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   // Delete background
-	gluLookAt(0., 0., 1., 0., 0., 0., 0., 1., 0.); // eye camera position, up where is above on the camera
+	gluLookAt(0., 5., 7., 0., 0., 0., 0., 1., 0.); // eye camera position, up where is above on the camera
 
-	glutWireCube(0.2);
+	//glutWireCube(0.2);
 
-	glTranslatef(0.1, 0.1, 0.);
+	/*glLineWidth(5.0); 
+	glBegin(GL_LINES); 
+	glColor4f(1.0f, 0.0f, 0.0f, 1.0f); 
+	glVertex3f(-1.0f, 0.0f, 0.0f); 
+	glVertex3f(1.0f, 0.0f, 0.0f); 
+	glVertex3f(+0.0f, -1.0f, 0.0f); 
+	glVertex3f(+0.0f, 1.0f, 0.0f); 
+	glVertex3f(+0.0f, 0.0f, -1.0f);
+	glVertex3f(+0.0f, 0.0f, 1.0f);
+	glEnd();*/
+
+	//Pyramid();
+	
+
+
+	glPushMatrix();
+	glTranslatef(4.0, 3.0, 0.0);
+	glScalef(0.3, 0.3, 0.3);
+	Drone();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-4.0, 3.0, 0.0);
+	glScalef(0.3, 0.3, 0.3);
+	Drone();
+	glPopMatrix();
+
+
+	//glTranslatef(0.0, 0.0, zTranslation);
+	glRotatef(fRotation, 0., -1., 0.);
+	Drone();
+	/*glTranslatef(0.1, 0.1, 0.);
 	glRotatef(fRotation, 0., 0., -1.);
 
 	glPushMatrix();
@@ -36,7 +70,7 @@ void RenderScene()
 	glTranslatef(0.3, 0., 0.);
 	glScalef(0.5, 0.15, 0.15);
 	Cube(0.4);
-	glPopMatrix();
+	glPopMatrix();*/
 
 	glutSwapBuffers();
 }
@@ -55,7 +89,7 @@ void Reshape(int width, int height)
 	// Frustum definieren (siehe unten) 
 	//glOrtho( -1., 1., -1., 1., 0.0, 2.0);   // Parallel Projektion (orthographische Projektion)
 	// gluPerspective(senkr. Oeffnungsw., Seitenverh., zNear, zFar); 
-	gluPerspective(60., 1., 0.1, 10.0);   // Perspektivische Projektion
+	gluPerspective(90., 1., 0.1, 30.0);   // Perspektivische Projektion
 
 										  // Matrix fuer Modellierung/Viewing 
 	glMatrixMode(GL_MODELVIEW);
@@ -68,6 +102,12 @@ void Animate(int value)
 	// 1000 msec aufgerufen. Der Parameter "value" wird einfach nur um eins 
 	// inkrementiert und dem Callback wieder uebergeben. 
 	std::cout << "value=" << value << std::endl;
+	zTranslation = zTranslation - 0.2;
+	if (zTranslation < -30.0)
+	{
+		zTranslation = +30.0;
+	}
+
 	fRotation = fRotation - 1.0; // Rotationswinkel aendern 
 	if (fRotation <= 0.0)
 	{
@@ -84,7 +124,7 @@ int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);                // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(600, 600);         // Fenster-Konfiguration
+	glutInitWindowSize(800, 800);         // Fenster-Konfiguration
 	glutCreateWindow("Janik Tinz; Patrick Tinz");   // Fenster-Erzeugung
 	glutDisplayFunc(RenderScene);         // Zeichenfunktion bekannt machen
 	glutReshapeFunc(Reshape);
