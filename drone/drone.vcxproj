@@ -142,16 +142,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
-    <ClCompile Include="Drone.cpp" />
+    <ClCompile Include="Aircraft.cpp" />
+    <ClCompile Include="Island.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Palm.cpp" />
     <ClCompile Include="Pyramid.cpp" />
-    <ClCompile Include="Wing.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
-    <ClInclude Include="Drone.h" />
+    <ClInclude Include="Aircraft.h" />
+    <ClInclude Include="Island.h" />
+    <ClInclude Include="Palm.h" />
     <ClInclude Include="Pyramid.h" />
-    <ClInclude Include="Wing.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
