@@ -2,7 +2,7 @@
 
 #include <GL/freeglut.h>
 
-void island(float rValue, float gValue, float bValue);
-void island_palm(float rValue, float gValue, float bValue);
+void island_palm(float, float, float);
 void tower();
-void island_main(float rValue, float gValue, float bValue);
+void island_main(float, float, float);
+void islands(int, float , float , float);

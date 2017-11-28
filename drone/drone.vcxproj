@@ -145,6 +145,7 @@
     <ClCompile Include="Aircraft.cpp" />
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Octahederon.cpp" />
     <ClCompile Include="Palm.cpp" />
     <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="World.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Aircraft.h" />
     <ClInclude Include="Island.h" />
+    <ClInclude Include="Octahederon.h" />
     <ClInclude Include="Palm.h" />
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="World.h" />

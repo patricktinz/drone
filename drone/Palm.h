@@ -3,4 +3,4 @@
 #include <GL/freeglut.h>
 
 void palm();
-
+void leaf();

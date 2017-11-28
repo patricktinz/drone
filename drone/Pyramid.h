@@ -1,3 +1,4 @@
 #include <GL/freeglut.h>
-void Pyramid();
+void Pyramid(float, float, float);
+void triangle();
 
