@@ -4,3 +4,4 @@
 
 void palm();
 void leaf();
+void palmTexture();

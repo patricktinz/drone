@@ -31,12 +31,12 @@ void island_main(float rValue, float gValue, float bValue)
 {
 	Octahederon(rValue, gValue, bValue);
 
-	glPushMatrix();
+	glPushMatrix();   // tower 1
 	glTranslatef(-3.5, 0.5, 0.);
 	tower();
 	glPopMatrix();
 
-	glPushMatrix();
+	glPushMatrix();   // tower 2
 	glTranslatef(3.5, 0.5, 0.);
 	tower();
 	glPopMatrix();
@@ -49,7 +49,7 @@ void islands(int choice, float rValue, float gValue, float bValue)
 	switch (choice)
 	{
 		case 0:
-			glPushMatrix();
+			glPushMatrix();   // island with two palms and one bush
 			glTranslatef(-3.5, 0.5, 0.);
 			palm();
 			glPopMatrix();
@@ -63,7 +63,7 @@ void islands(int choice, float rValue, float gValue, float bValue)
 			glPopMatrix();
 			break;
 		case 1:
-			glPushMatrix();
+			glPushMatrix();   // island with two palms and one pyramid
 			glTranslatef(-3.0, 0.5, 0.);
 			palm();
 			glPopMatrix();
@@ -77,7 +77,8 @@ void islands(int choice, float rValue, float gValue, float bValue)
 			glPopMatrix();
 			break;
 		case 2:
-			glPushMatrix();
+			palmTexture();
+			glPushMatrix();   // island with one pyramid and one bush
 			glTranslatef(-2.0, 0.5, 0.);
 			Pyramid(0.7f, 0.7f, 0.7f);
 			glPopMatrix();
@@ -87,7 +88,8 @@ void islands(int choice, float rValue, float gValue, float bValue)
 			glPopMatrix();
 			break;
 		case 3:
-			glPushMatrix();
+			palmTexture();
+			glPushMatrix();   // island two bush
 			glTranslatef(2.0, 0.5, 0.);
 			leaf();
 			glPopMatrix();
@@ -97,7 +99,7 @@ void islands(int choice, float rValue, float gValue, float bValue)
 			glPopMatrix();
 			break;
 		case 4:
-			glPushMatrix();
+			glPushMatrix();   // island with three palms
 			glTranslatef(-3.0, 0.5, 0.);
 			palm();
 			glPopMatrix();

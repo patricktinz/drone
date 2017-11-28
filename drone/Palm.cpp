@@ -4,6 +4,7 @@
 #include "Pyramid.h"
 #include "Octahederon.h"
 #include <GL/freeglut.h>
+#include <GL/SOIL.h>
 
 void palm()
 {
@@ -47,5 +48,24 @@ void leaf()
 	glPushMatrix();
 	glRotatef(90., -1., 0., 0.);
 	Pyramid(0., 1., 0.);
+	glPopMatrix();
+}
+
+void palmTexture() 
+{
+	glPushMatrix();
+	glTranslatef(0., 3.5, 0.);
+
+	glEnable(GL_TEXTURE_2D);
+	glBegin(GL_QUADS);
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	glNormal3f(0., 1., 0.);
+	glTexCoord2f(0.0f, 0.0f);   glVertex3f(-3.0f, -3.0f, 0.0f);
+	glTexCoord2f(1.0f, 0.0f);   glVertex3f(3.0f, -3.0f, 0.0f);
+	glTexCoord2f(1.0f, 1.0f);   glVertex3f(3.0f, 3.0f, 0.0f);
+	glTexCoord2f(0.0f, 1.0f);   glVertex3f(-3.0f, 3.0f, 0.0f);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+
 	glPopMatrix();
 }

@@ -3,7 +3,6 @@
 #include "Cube.h"
 #include <GL/freeglut.h>
 
-
 void Cube(GLfloat fSeitenL, float rValue, float gValue, float bValue)
 {
 	glBegin(GL_POLYGON);   // front

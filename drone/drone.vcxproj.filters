@@ -30,9 +30,6 @@
     <ClCompile Include="Island.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Aircraft.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -51,9 +48,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Island.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Aircraft.h">

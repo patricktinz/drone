@@ -133,19 +133,19 @@ void main_rotor()
 
 void helicopter()
 {
-	glPushMatrix();
+	glPushMatrix();   
 	glScalef(1.0, 0.5, 0.5);
 	Cube(3.0, 0.7, 0.3, 0.);
 	glPopMatrix();
 
-	glPushMatrix();
+	glPushMatrix();   // tail rotor
 	glTranslatef(3.0, 0.5, 0.);
 	glRotatef(90., 1., 0., 0.);
 	glScalef(1., 1., 1.);
 	tail_rotor();
 	glPopMatrix();
 
-	glPushMatrix();
+	glPushMatrix();   // main rotor
 	glTranslatef(0., 0.75, 0.);
 	glScalef(1., 1., 1.);
 	main_rotor();

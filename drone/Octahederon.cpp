@@ -8,8 +8,8 @@ void Octahederon(float rValue, float gValue, float bValue)
 	glColor4f(rValue, gValue, bValue, 1.0f);	// color
 
 	glBegin(GL_POLYGON);   // island bottom
-	glVertex3f(4., -0.5, 0.);
-	glVertex3f(3., -0.5, 3.);
+	glVertex3f(4.0f, -0.5f, 0.0f);
+	glVertex3f(3.0f, -0.5f, 3.0f);
 	glVertex3f(0., -0.5, 4.);
 	glVertex3f(-3., -0.5, 3.);
 	glVertex3f(-4., -0.5, 0.);
@@ -97,6 +97,4 @@ void Octahederon(float rValue, float gValue, float bValue)
 	glVertex3f(4., 0.5, 0.);
 	glVertex3f(3., 0.5, -3.);
 	glEnd();
-
 }
-

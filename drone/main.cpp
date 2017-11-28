@@ -3,30 +3,34 @@
 #include <iostream> 
 #include <windows.h>
 #include <GL/freeglut.h>   // load all for OpenGL
+#include <GL/SOIL.h>
 #include <math.h>
 #include "Cube.h"
-#include "Pyramid.h"
 #include "Aircraft.h"
 #include "Palm.h"
 #include "Island.h"
-#include "World.h"
 #include <ctime>
 #include <vector>
 
-float fRotation = 315.0;
-float fTranslation = 1.0;
+float fRotation = 315.0f;
+float fTranslation = 1.0f;
 bool check = true;
 
 std::vector<int> islandVector;
 
 // keyboard func
-GLfloat x_winkel = 0.0, y_winkel = 0.0;
-GLfloat yTranslation = 0.0;
-GLfloat xTranslation = 0.0;
-GLfloat zTranslation = 0.0;
+GLfloat x_winkel = 0.0f, y_winkel = 0.0f;
+GLfloat yTranslation = 0.0f;
+GLfloat xTranslation = 0.0f;
+GLfloat zTranslation = 0.0f;
+
+// texture
+// texture palm id
+GLuint tex_2d;
 
 const int world_size = 200;
 
+// menu - camera view
 bool right = false;
 bool left = false;
 bool front = false;
@@ -95,7 +99,6 @@ void cameraView(int item)
 	}
 }
 
-
 void Init()
 {
 	// all actions for program start
@@ -109,6 +112,14 @@ void Init()
 	glEnable(GL_DEPTH_TEST);
 	glClearDepth(1.0);
 	glEnable(GL_NORMALIZE);
+
+	// read texture
+	tex_2d = SOIL_load_OGL_texture("PALM.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	glBindTexture(GL_TEXTURE_2D, tex_2d);
+	// transparency (z.B. Billboards)
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// submenu
 	int submenu;
@@ -130,9 +141,9 @@ void helicopterRotate()
 {
 	// helicopter
 	glPushMatrix();
-	glRotatef(fRotation, 0., -1., 0.);
-	glTranslatef(15., 25., 0.);
-	glRotatef(10., 1., 0., 1.);
+	glRotatef(fRotation, 0.0f, -1.0f, 0.0f);
+	glTranslatef(15.0f, 25.0f, 0.0f);
+	glRotatef(10.0f, 1.0f, 0.0f, 1.0f);
 	helicopter();
 	glPopMatrix();
 }
@@ -254,12 +265,6 @@ void RenderScene()
 		gluLookAt(-50.0f, 40.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
 	//systemOfCoordinates();
-
-	/*// world
-	glPushMatrix();
-	glTranslatef(0., world_size/2, 0.);
-	world(world_size);
-	glPopMatrix();*/
 	
 	helicopterRotate();
 	
@@ -271,7 +276,6 @@ void RenderScene()
 	miniDrone();
 	mainDrone();
 	
-	//Pyramid(1.0, 1.0, 1.0);
 	glutSwapBuffers();
 }
 
@@ -287,9 +291,8 @@ void Reshape(int width, int height)
 
 	// define Frustum
 	//glOrtho( -1., 1., -1., 1., 0.0, 2.0);   // parallel projection (orthographic projection)
-	// gluPerspective(vertical. aperture, aspect ratio, zNear, zFar); 
+	//gluPerspective(vertical. aperture, aspect ratio, zNear, zFar); 
 	gluPerspective(60., 1., 0.1, 100.0);   // perspective projection
-
 										  // Matrix for modeling/Viewing 
 	glMatrixMode(GL_MODELVIEW);
 }
@@ -364,13 +367,7 @@ void KeyboardFunc(unsigned char key, int x, int y)
 
 void Animate(int value)
 {
-	// Hier werden Berechnungen durchgefuehrt, die zu einer Animation der Szene  
-	// erforderlich sind. Dieser Prozess l‰uft im Hintergrund und wird alle 
-	// 1000 msec aufgerufen. Der Parameter "value" wird einfach nur um eins 
-	// inkrementiert und dem Callback wieder uebergeben. 
-	//std::cout << "value=" << value << std::endl;
-
-	fRotation = fRotation - 0.5; // Rotationswinkel aendern 
+	fRotation = fRotation - 0.5; 
 	if (fRotation <= 0.0)
 	{
 		fRotation = fRotation + 360.0;
@@ -392,7 +389,7 @@ void Animate(int value)
 	}
 	// call RenderScene
 	glutPostRedisplay();
-	// Timer wieder registrieren - Animate wird so nach 10 msec mit value+=1 aufgerufen.
+
 	int wait_msec = 10;
 	glutTimerFunc(wait_msec, Animate, ++value);
 }
@@ -402,8 +399,8 @@ int main(int argc, char **argv)
 	std::cout << "----------------------------------" << std::endl;
 	std::cout << "       Control Instructions       " << std::endl;
 	std::cout << "1. Click into the graphics window" << std::endl;
-	std::cout << "2. " << std::endl;
-	std::cout << "3. " << std::endl << std::endl;
+	std::cout << "2. Control the drone with arrow keys, forward (f) and back (b)" << std::endl;
+	std::cout << "3. Open a menu with a right click on the graphics window" << std::endl << std::endl;
 	std::cout << "Exit -> Close graphics window!" << std::endl << std::endl;
 	std::cout << "----------------------------------" << std::endl;
 
@@ -413,15 +410,15 @@ int main(int argc, char **argv)
 		islandVector.push_back(rand()%5);
 	}
 
-	glutInit(&argc, argv);                // GLUT initialisieren
+	glutInit(&argc, argv);                // GLUT init
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 800);         // window configuration
-	glutCreateWindow("Janik Tinz; Patrick Tinz");   // Fenster-Erzeugung
-	glutDisplayFunc(RenderScene);         // Zeichenfunktion bekannt machen
+	glutCreateWindow("Janik Tinz; Patrick Tinz");   // create window
+	glutDisplayFunc(RenderScene);         // announce draw function 
 	glutReshapeFunc(Reshape);
 	glutSpecialFunc(SpecialFunc);
 	glutKeyboardFunc(KeyboardFunc);
-	// TimerCallback registrieren; wird nach 10 msec aufgerufen mit Parameter 0  
+	// register TimerCallback; call after 10 msec with parameter 0  
 	glutTimerFunc(10, Animate, 0);
 	Init();
 	glutMainLoop();
