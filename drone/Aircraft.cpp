@@ -36,12 +36,12 @@ void wing()
 
 void drone() 
 {
-	glPushMatrix();   
+	glPushMatrix();   // main cube 
 	glScalef(2.0, 0.5, 1.0);
 	Cube(2.0, 0.3f, 0.3f, 0.3f);
 	glPopMatrix();
 
-
+	// wings
 	glPushMatrix();
 	glTranslatef(1.5, 0., 0.5);
 	glRotatef(45., 0., -1., 0.);
@@ -49,7 +49,6 @@ void drone()
 	glScalef(1.0, 1.0, 1.0);
 	wing();
 	glPopMatrix();
-
 
 	glPushMatrix();
 	glTranslatef(1.5, 0., -0.5);
@@ -59,7 +58,6 @@ void drone()
 	wing();
 	glPopMatrix();
 
-
 	glPushMatrix();
 	glTranslatef(-1.5, 0., 0.5);
 	glRotatef(135., 0., -1., 0.);
@@ -67,7 +65,6 @@ void drone()
 	glScalef(1.0, 1.0, 1.0);
 	wing();
 	glPopMatrix();
-
 
 	glPushMatrix();
 	glTranslatef(-1.5, 0., -0.5);
@@ -77,8 +74,7 @@ void drone()
 	wing();
 	glPopMatrix();
 
-
-	glPushMatrix();
+	glPushMatrix();   // cube at the top
 	glTranslatef(0.0, 0.75, 0.);
 	glScalef(2.0, 0.5, 1.0);
 	Cube(1.0, 0.5f, 0.5f, 0.5f);
@@ -111,6 +107,7 @@ void tail_rotor()
 	Cube(1.0, 0.3f, 0.3f, 0.3f);
 	glPopMatrix();
 }
+
 void main_rotor()
 {
 	fRotation1 = fRotation1 - 1.0;
@@ -118,6 +115,7 @@ void main_rotor()
 	{
 		fRotation1 = fRotation1 + 360.0;
 	}
+
 	glPushMatrix();   // foot
 	glScalef(0.4, 0.2, 0.4);
 	Pyramid(0., 0., 0.);
@@ -133,7 +131,7 @@ void main_rotor()
 
 void helicopter()
 {
-	glPushMatrix();   
+	glPushMatrix();   // main cube   
 	glScalef(1.0, 0.5, 0.5);
 	Cube(3.0, 0.7, 0.3, 0.);
 	glPopMatrix();

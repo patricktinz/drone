@@ -1,20 +1,14 @@
 ﻿  main.cpp
-\\mac\home\documents\github\drone\drone\main.cpp(208): warning C4305: "Argument": Verkürzung von "double" in "GLfloat"
-\\mac\home\documents\github\drone\drone\main.cpp(216): warning C4305: "Argument": Verkürzung von "double" in "GLfloat"
-\\mac\home\documents\github\drone\drone\main.cpp(272): warning C4305: "Argument": Verkürzung von "double" in "float"
+\\mac\home\documents\github\drone\drone\main.cpp(205): warning C4305: "Argument": Verkürzung von "double" in "GLfloat"
+\\mac\home\documents\github\drone\drone\main.cpp(213): warning C4305: "Argument": Verkürzung von "double" in "GLfloat"
+\\mac\home\documents\github\drone\drone\main.cpp(270): warning C4305: "Argument": Verkürzung von "double" in "float"
 \\mac\home\documents\github\drone\drone\main.cpp(316): warning C4244: "=": Konvertierung von "double" in "GLfloat", möglicher Datenverlust
 \\mac\home\documents\github\drone\drone\main.cpp(325): warning C4244: "=": Konvertierung von "double" in "GLfloat", möglicher Datenverlust
 \\mac\home\documents\github\drone\drone\main.cpp(334): warning C4244: "=": Konvertierung von "double" in "GLfloat", möglicher Datenverlust
 \\mac\home\documents\github\drone\drone\main.cpp(343): warning C4244: "=": Konvertierung von "double" in "GLfloat", möglicher Datenverlust
-\\mac\home\documents\github\drone\drone\main.cpp(370): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
-\\mac\home\documents\github\drone\drone\main.cpp(373): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
-\\mac\home\documents\github\drone\drone\main.cpp(379): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
-\\mac\home\documents\github\drone\drone\main.cpp(388): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
-  Palm.cpp
-\\mac\home\documents\github\drone\drone\palm.cpp(13): warning C4305: "Argument": Verkürzung von "double" in "GLfloat"
-\\mac\home\documents\github\drone\drone\palm.cpp(23): warning C4305: "Argument": Verkürzung von "double" in "GLfloat"
-  Island.cpp
-\\mac\home\documents\github\drone\drone\island.cpp(25): warning C4305: "Argument": Verkürzung von "double" in "GLfloat"
-  Code wird generiert...
+\\mac\home\documents\github\drone\drone\main.cpp(372): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+\\mac\home\documents\github\drone\drone\main.cpp(375): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+\\mac\home\documents\github\drone\drone\main.cpp(381): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+\\mac\home\documents\github\drone\drone\main.cpp(390): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
   drone.vcxproj -> \\Mac\Home\Documents\GitHub\drone\drone\Debug\drone.exe
   drone.vcxproj -> \\Mac\Home\Documents\GitHub\drone\drone\Debug\drone.pdb (Full PDB)

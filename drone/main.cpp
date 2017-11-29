@@ -5,18 +5,19 @@
 #include <GL/freeglut.h>   // load all for OpenGL
 #include <GL/SOIL.h>
 #include <math.h>
-#include "Cube.h"
 #include "Aircraft.h"
 #include "Palm.h"
 #include "Island.h"
 #include <ctime>
 #include <vector>
 
+const int world_size = 200;
+
+bool check = true;
+std::vector<int> islandVector;
+
 float fRotation = 315.0f;
 float fTranslation = 1.0f;
-bool check = true;
-
-std::vector<int> islandVector;
 
 // keyboard func
 GLfloat x_winkel = 0.0f, y_winkel = 0.0f;
@@ -24,11 +25,8 @@ GLfloat yTranslation = 0.0f;
 GLfloat xTranslation = 0.0f;
 GLfloat zTranslation = 0.0f;
 
-// texture
 // texture palm id
 GLuint tex_2d;
-
-const int world_size = 200;
 
 // menu - camera view
 bool right = false;
@@ -104,10 +102,10 @@ void Init()
 	// all actions for program start
 	// light
 	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHTING);   // calculate the light 
 	GLfloat light_position[] = { 10.0, 70.0, 0.0, 0.0 };
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position); // Licht Nr. 0 rechts oben
-	glEnable(GL_COLOR_MATERIAL);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);   // light at the top right, GL_POSITION = light is directed
+	glEnable(GL_COLOR_MATERIAL);   // use material parameter for actual color setting
 	
 	glEnable(GL_DEPTH_TEST);
 	glClearDepth(1.0);
@@ -117,8 +115,7 @@ void Init()
 	tex_2d = SOIL_load_OGL_texture("PALM.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
 		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	glBindTexture(GL_TEXTURE_2D, tex_2d);
-	// transparency (z.B. Billboards)
-	glEnable(GL_BLEND);
+	glEnable(GL_BLEND);   // transparency (z.B. Billboards)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// submenu
@@ -134,7 +131,7 @@ void Init()
 	glutCreateMenu(mainMenu);
 	glutAddSubMenu("Camera", submenu);
 	glutAddMenuEntry("Exit", 1);
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);   // open menu with right click
 }
 
 void helicopterRotate()
@@ -253,6 +250,7 @@ void RenderScene()
 	glClearColor(0.0, 0.5, 1.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   // Delete background
 
+	// choose camera view
 	if (drone_view == true)
 		gluLookAt(xTranslation, yTranslation+2, zTranslation+10, xTranslation, yTranslation, zTranslation, 0., 1., 0.); // eye camera position, up where is above on the camera
 	if (front == true)
@@ -290,7 +288,9 @@ void Reshape(int width, int height)
 	glViewport(0, 0, width, height);
 
 	// define Frustum
+
 	//glOrtho( -1., 1., -1., 1., 0.0, 2.0);   // parallel projection (orthographic projection)
+
 	//gluPerspective(vertical. aperture, aspect ratio, zNear, zFar); 
 	gluPerspective(60., 1., 0.1, 100.0);   // perspective projection
 										  // Matrix for modeling/Viewing 
@@ -343,6 +343,7 @@ void SpecialFunc(int key, int x, int y)
 			yTranslation = yTranslation - 0.5;
 			break;
 		}
+
 	// call RenderScene
 	glutPostRedisplay();
 }
@@ -367,13 +368,14 @@ void KeyboardFunc(unsigned char key, int x, int y)
 
 void Animate(int value)
 {
+	// rotate mini drones and helicopter
 	fRotation = fRotation - 0.5; 
 	if (fRotation <= 0.0)
 	{
 		fRotation = fRotation + 360.0;
 	}
 
-	
+	// translation mini drones
 	if(fTranslation >= 20.0 || check == false)
 	{
 		fTranslation = fTranslation - 0.05;
@@ -387,6 +389,7 @@ void Animate(int value)
 	{
 		fTranslation = fTranslation + 0.05;
 	}
+
 	// call RenderScene
 	glutPostRedisplay();
 
